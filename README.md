@@ -1,1 +1,2 @@
-# test_work
+тестовое задание SimbirSoft 
+BackEnd Golang
