@@ -44,15 +44,18 @@ func main()  {
 			}
 			for _, v := range responseStringSplit{
 				sum := 0
-				for _, j := range responseStringSplit{
+				for i, j := range responseStringSplit{
 					if j == v {
 						sum += 1
+						responseStringSplit = append(responseStringSplit[:i], responseStringSplit[i + 1:]...)
 					}
 				}
-				_, err := fmt.Fprintf(file, "%s - %d \n", v, sum)
-				if err != nil {
-					panic(err)
-					return
+				if sum != 0 {
+					_, err := fmt.Fprintf(file, "%s - %d \n", v, sum)
+					if err != nil {
+						panic(err)
+						return
+					}
 				}
 			}
 			defer func(file *os.File) {
